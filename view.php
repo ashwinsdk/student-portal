@@ -14,18 +14,18 @@ $name=$_GET["name"];
 $sql = " SELECT * FROM students WHERE id = '$id' ";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($result);
+$_SESSION['id'] = $row['id'];
 $_SESSION['user_name'] = $row['login_name'];
 $_SESSION['email'] = $row['email'];
+$_SESSION['father'] = $row['father_name'];
+$_SESSION['mother'] = $row['mother_name'];
+$_SESSION['mobile'] = $row['mobile_no'];
+$_SESSION['kovil'] = $row['kovil'];
+$_SESSION['kulam'] = $row['kulam'];
+$_SESSION['pincode'] = $row['pincode'];
 
-$status = $_POST["status"];
-if(isset($_POST["submit"])){
-  $sql2 = "UPDATE students SET status='$status' WHERE id='$id'";
-  $run = mysqli_query($conn , $sql2);
-  if($run){
-    header('location:index.php');
-  }
-}
 ?>
+<?php //echo $_SESSION['email'] ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,6 +62,7 @@ if(isset($_POST["submit"])){
 
 <body>
 
+  
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -72,27 +73,13 @@ if(isset($_POST["submit"])){
       </a>
     </div><!-- End Logo -->
 
-    <div class="search-bar">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
-    </div><!-- End Search Bar -->
-
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
-
-        <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle " href="#">
-            <i class="bi bi-search"></i>
-          </a>
-        </li><!-- End Search Icon-->
 
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <!--<img src="" alt="Profile" class="rounded-circle">--> Profile
-            <span class="d-none d-md-block dropdown-toggle ps-2"></span>
+          <i class="bi bi-person-circle"></i>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -105,7 +92,7 @@ if(isset($_POST["submit"])){
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="#">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
@@ -134,48 +121,12 @@ if(isset($_POST["submit"])){
     <section class="section dashboard">
       <div class="row">
 
-        <!-- Left side columns -->
-        <div class="col-lg-8">
-          <div class="row">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Apporve/Disapprove</h5>
-
-              <!-- Multi Columns Form -->
-              <form class="row g-3" method="POST">
-                <div class="col-md-12">
-                  <label for="inputName5" class="form-label">Email</label>
-                  <input type="" class="form-control" id="inputEmail5" value="<?php echo $_SESSION['email'] ?>" disabled>
-                </div>
-
-                <div class="col-md-6">
-                  <label for="inputEmail5" class="form-label">Name</label>
-                  <input type="" class="form-control" id="inputEmail5" value="<?php echo $_SESSION['user_name'] ?>" disabled>
-                </div>
-
-                <div class="col-md-6">
-                  <label for="inputPassword5" class="form-label" >Apporve/Disapprove</label>
-                  <select id="inputState" name="status" class="form-select">
-                    <option selected>Choose...</option>
-                    <option>Approve</option>
-                    <option>Disapprove</option>
-                  </select>
-                </div>
-                <div class="text-center">
-                  <button type="submit" class="btn btn-primary" name="submit">Submit</button><br><br>
-                <a href="index.php">
-                  <button type="button" class="btn btn-outline-primary rounded-pill">Back</button>
-                </a>
-                </div>
-              </form><!-- End Multi Columns Form -->
-
-            </div>
-          </div>
-          </div>
-        </div>
+      </div>
     </section>
 
   </main><!-- End #main -->
+
+
 
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i

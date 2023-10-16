@@ -7,7 +7,7 @@ $sqlget = "select * from students";
 $sqldata = mysqli_query($conn, $sqlget);
 $row = mysqli_fetch_assoc($sqldata);
 
-$sql_ok = "select count(id) from students where status = 'Apporoved'";
+$sql_ok = "select count(id) from students where status = 'Approve'";
 $query_ok = mysqli_query($conn, $sql_ok);
 $row_ok= mysqli_fetch_assoc($query_ok);
 
@@ -66,27 +66,13 @@ $row=mysqli_fetch_assoc($query_update);
       </a>
     </div><!-- End Logo -->
 
-    <div class="search-bar">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
-    </div><!-- End Search Bar -->
-
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
-
-        <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle " href="#">
-            <i class="bi bi-search"></i>
-          </a>
-        </li><!-- End Search Icon-->
 
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <!--<img src="" alt="Profile" class="rounded-circle">--> Profile
-            <span class="d-none d-md-block dropdown-toggle ps-2"></span>
+          <i class="bi bi-person-circle"></i>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -99,7 +85,7 @@ $row=mysqli_fetch_assoc($query_update);
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="#">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
@@ -129,7 +115,7 @@ $row=mysqli_fetch_assoc($query_update);
       <div class="row">
 
         <!-- Left side columns -->
-        <div class="col-lg-8">
+        <div class="col-mb-10">
           <div class="row">
 
             <!-- Sales Card -->
@@ -178,9 +164,9 @@ $row=mysqli_fetch_assoc($query_update);
               </div>
             </div><!-- End Revenue Card -->
 
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Students</h5>
+            <div class="" style="">
+              <div class="">
+                <h5 class="">Students</h5>
                 <!-- Table with stripped rows -->
                 <div class="table-responsive">
                 <table class="table datatable">
@@ -196,7 +182,7 @@ $row=mysqli_fetch_assoc($query_update);
                       <th>Kovil</th>
                       <th>Pincode</th>
                       <th>Status</th>
-                      <th>Edit-Status</th>
+                      <th>View</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -223,38 +209,30 @@ $row=mysqli_fetch_assoc($query_update);
                       echo "</td><td>";
                       echo $row['status'];
                       echo "</td><td>";
-                      echo '<form method="POST" action="">
-                      <button type="button" class="btn btn-outline-primary rounded-pill" data-bs-toggle="dropdown">
-                       Edit
-                      </button>
-                      <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
-                      <li>
-                      <button class="dropdown-item d-flex align-items-center" name="approve">
-                      <i class="bi bi-bookmark-check-fill"></i>
-                      <span>Approve</span>
-                      </button>
-                      </li>
-                      <li>
-                      <button class="dropdown-item d-flex align-items-center" name="disapprove">
-                      <i class="bi bi-bookmark-x-fill"></i>
-                      <span>DisApprove</span>
-                      </button>
-                      </li>
-                      </ul>
+                      $id=$row['id'];
+                      $name=$row['login_name'];
+                      $email=$row['email'];
+                      $father=$row['father_name'];
+                      $mother=$row['mother_name'];
+                      $mobile=$row['mobile_no'];
+                      $kovil=$row['kovil'];
+                      $kulam=$row['kulam'];
+                      $pincode=$row['pincode'];
+                      echo '<form method="GET" action="view.php">
+                      <input type="submit" class="btn btn-outline-dark rounded-pill" value="View">
+                      <input name="id" type="hidden" value='.$id.'>
+                      <input name="email" type="hidden" value='.$email.'>
+                      <input name="name" type="hidden" value='.$name.'>
+                      <input name="name" type="hidden" value='.$father.'>
+                      <input name="name" type="hidden" value='.$mother.'>
+                      <input name="name" type="hidden" value='.$mobile.'>
+                      <input name="name" type="hidden" value='.$kovil.'>
+                      <input name="name" type="hidden" value='.$kulam.'>
+                      <input name="name" type="hidden" value='.$pincode.'>
                       </form>
                       ';
                       echo "</td></tr>";
-                    }/*
-                    while($row = mysqli_fetch_assoc($sqldata)){
-                      $id= $row['id'];
-                      if(isset($_POST["approve"])){
-                        $sql2 = "UPDATE students SET status='Approved' WHERE id= '$id'";
-                        $run = mysqli_query($conn , $sql2);
-                      } elseif(isset($_POST["disapprove"])){
-                        $sql2 = "UPDATE students SET status='Disapproved' WHERE id= '$id'";
-                        $run = mysqli_query($conn , $sql2);
-                      } 
-                    }*/
+                    }
                       ?>
                   </tbody>
                 </table>

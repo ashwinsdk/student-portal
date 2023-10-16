@@ -84,12 +84,12 @@ if(isset($_POST['submit'])){
 <body>
 
   <main>
-    <div class="container">
+    <div class="container-xxl">
 
       <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
-        <div class="container">
+        <div class="container-xxl">
           <div class="row justify-content-center">
-            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+            <div class="col-lg-6 col-md-8 d-flex flex-column align-items-center justify-content-center">
 
               <div class="d-flex justify-content-center py-4">
                 <a href="#" class="logo d-flex align-items-center w-auto">
@@ -97,9 +97,6 @@ if(isset($_POST['submit'])){
                   <span class="d-none d-lg-block">Student-portal</span>
                 </a>
               </div><!-- End Logo -->
-              <div class="col-12">
-                 <p class="text-center small">Already have an account? <a href="login.php">Log in</a></p>
-              </div>
 
               <div class="card mb-3">
 
@@ -111,7 +108,7 @@ if(isset($_POST['submit'])){
                   </div>
 
                   <!-- Form -->
-                  <form class="row g-3 needs-validation" method="POST" action="" novalidate >
+                  <form class="row g-1 needs-validation" method="POST" action="" novalidate >
                      <?php
                      if(isset($error)){
                           foreach($error as $error){
@@ -120,66 +117,69 @@ if(isset($_POST['submit'])){
                    }
                    ?>
                     <div class="col-12">
-                      <label for="yourName" class="form-label">Your Name</label>
-                      <input type="text" name="name" class="form-control" id="yourName" required>
+                      <input type="text" name="name" class="form-control" id="yourName" placeholder="Your Name" required>
                       <div class="invalid-feedback">Please, enter your name!</div>
                     </div>
 
                     <div class="col-12">
-                      <label for="yourEmail" class="form-label">Your Email</label>
-                      <input type="email" name="email" class="form-control" id="yourEmail" required>
+                      <label for="yourEmail" class="form-label"> </label>
+                      <input type="email" name="email" class="form-control" id="yourEmail" placeholder="Your Email" required>
                       <div class="invalid-feedback">Please enter a valid Email adddress!</div>
                     </div>
 
-                    <div class="col-12">
-                      <label for="yourPassword" class="form-label">Password</label>
-                      <input type="password" name="password" class="form-control" id="yourPassword" required>
+                    <div class="col-md-6">
+                      <label for="yourPassword" class="form-label"></label>
+                      <input type="password" name="password" class="form-control" id="yourPassword" placeholder="Password" required>
                       <div class="invalid-feedback">Please enter your password!</div>
                     </div>
-                    <div class="col-12">
-                      <label for="yourPassword" class="form-label"> Confirm Password</label>
-                      <input type="password" name="cpassword" class="form-control" id="yourPassword" required>
+                    <div class="col-md-6">
+                      <label for="yourPassword" class="form-label"> </label>
+                      <input type="password" name="cpassword" class="form-control" id="yourPassword" placeholder="Confirm Password" required>
                       <div class="invalid-feedback">Please enter your password!</div>
                     </div>
                     
                     <div class="col-12">
-                      <label for="yourName" class="form-label">Father's Name</label>
-                      <input type="text" name="father_name" class="form-control" id="yourName" required>
+                      <label for="yourName" class="form-label"></label>
+                      <input type="text" name="father_name" class="form-control" id="yourName" placeholder="Father's Name" required>
                       <div class="invalid-feedback">Please, enter your father's name!</div>
                     </div>
 
                     <div class="col-12">
-                      <label for="yourName" class="form-label">Mother's Name</label>
-                      <input type="text" name="mother_name" class="form-control" id="yourName" required>
+                      <label for="yourName" class="form-label"></label>
+                      <input type="text" name="mother_name" class="form-control" id="yourName" placeholder="Mother's Name" required>
                       <div class="invalid-feedback">Please, enter your mother's name!</div>
                     </div>
 
-                    <div class="col-12">
-                      <label for="yourName" class="form-label">Mobile Number</label>
-                      <input type="text" name="mobile_no" class="form-control" id="yourName" required>
-                      <div class="invalid-feedback">Please, enter your mobile number!</div>
-                    </div>
-
-                    <div class="col-12">
-                      <label for="yourName" class="form-label">Kulam</label>
-                      <input type="text" name="kulam" class="form-control" id="yourName" required>
+                    <div class="col-md-6">
+                      <label for="yourName" class="form-label"></label>
+                      <input type="text" name="kulam" class="form-control" id="yourName" placeholder="Kulam" required>
                       <div class="invalid-feedback">Please, enter your kulam!</div>
                     </div>
 
-                    <div class="col-12">
-                      <label for="yourName" class="form-label">Kovil</label>
-                      <input type="text" name="kovil" class="form-control" id="yourName" required>
+                    <div class="col-md-6">
+                      <label for="yourName" class="form-label"></label>
+                      <input type="text" name="kovil" class="form-control" id="yourName" placeholder="Kovil" required>
                       <div class="invalid-feedback">Please, enter your kovil!</div>
                     </div>
 
-                    <div class="col-12">
-                      <label for="yourName" class="form-label">Pincode</label>
-                      <input type="text" name="pincode" class="form-control" id="yourName" required>
+                    <div class="col-md-6">
+                      <label for="yourName" class="form-label"></label>
+                      <input type="text" name="mobile_no" class="form-control" id="yourName" placeholder="Mobile Number" required>
+                      <div class="invalid-feedback">Please, enter your mobile number!</div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label for="yourName" class="form-label"></label>
+                      <input type="text" name="pincode" class="form-control" id="yourName" placeholder="Pincode" required>
                       <div class="invalid-feedback">Please, enter your pincode!</div>
                     </div>
 
                     <div class="col-12">
-                      <button class="btn btn-primary w-100" name="submit" type="submit">Create Account</button>
+                       <br><p class="text-center small">Already have an account? <a href="login.php">Log in</a></p>
+                    </div>
+                    
+                    <div class="text-center">
+                      <button class="btn btn-outline-primary rounded-pill w-50" name="submit" type="submit">Create Account</button>
                     </div>
                   </form>
 
@@ -190,6 +190,7 @@ if(isset($_POST['submit'])){
         </div>
 
       </section>
+      
 
     </div>
   </main><!-- End #main -->
