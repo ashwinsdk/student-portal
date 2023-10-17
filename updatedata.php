@@ -8,8 +8,6 @@ $sqlget = "select * from students";
 $sqldata = mysqli_query($conn, $sqlget);
 
 $id=$_GET["id"];
-$email=$_GET["email"];
-$name=$_GET["name"];
 
 $sql = " SELECT * FROM students WHERE id = '$id' ";
 $result = mysqli_query($conn, $sql);
@@ -66,7 +64,7 @@ if(isset($_POST["submit"])){
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="index.php" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
         <span class="d-none d-lg-block">Student-Portal</span>
       </a>

@@ -7,7 +7,7 @@ $sqlget = "select * from students";
 $sqldata = mysqli_query($conn, $sqlget);
 $row = mysqli_fetch_assoc($sqldata);
 
-$sql_ok = "select count(id) from students where status = 'Approve'";
+$sql_ok = "select count(id) from students where status = 'Approved'";
 $query_ok = mysqli_query($conn, $sql_ok);
 $row_ok= mysqli_fetch_assoc($query_ok);
 
@@ -60,7 +60,7 @@ $row=mysqli_fetch_assoc($query_update);
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="index.php" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
         <span class="d-none d-lg-block">Student-Portal</span>
       </a>
@@ -164,9 +164,9 @@ $row=mysqli_fetch_assoc($query_update);
               </div>
             </div><!-- End Revenue Card -->
 
-            <div class="" style="">
-              <div class="">
-                <h5 class="">Students</h5>
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Students</h5>
                 <!-- Table with stripped rows -->
                 <div class="table-responsive">
                 <table class="table datatable">
@@ -221,14 +221,6 @@ $row=mysqli_fetch_assoc($query_update);
                       echo '<form method="GET" action="view.php">
                       <input type="submit" class="btn btn-outline-dark rounded-pill" value="View">
                       <input name="id" type="hidden" value='.$id.'>
-                      <input name="email" type="hidden" value='.$email.'>
-                      <input name="name" type="hidden" value='.$name.'>
-                      <input name="name" type="hidden" value='.$father.'>
-                      <input name="name" type="hidden" value='.$mother.'>
-                      <input name="name" type="hidden" value='.$mobile.'>
-                      <input name="name" type="hidden" value='.$kovil.'>
-                      <input name="name" type="hidden" value='.$kulam.'>
-                      <input name="name" type="hidden" value='.$pincode.'>
                       </form>
                       ';
                       echo "</td></tr>";
