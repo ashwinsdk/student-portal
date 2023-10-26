@@ -28,7 +28,7 @@ if(isset($_POST["delete"])){
   $delete_sql = "delete FROM students WHERE id='$id'";
   $d_run = mysqli_query($conn , $delete_sql);
   if($d_run){
-    header('location:index.php');
+    header('location:admin.php');
     echo'
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
       <i class="bi bi-exclamation-octagon me-1"></i>
@@ -81,7 +81,7 @@ if(isset($_POST["delete"])){
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.php" class="logo d-flex align-items-center">
+      <a href="admin.php" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
         <span class="d-none d-lg-block">Student-Portal</span>
       </a>

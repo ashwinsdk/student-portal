@@ -2,23 +2,8 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-require "config.php";
-$sqlget = "select * from students";
-$sqldata = mysqli_query($conn, $sqlget);
-$row = mysqli_fetch_assoc($sqldata);
-
-$sql_ok = "select count(id) from students where status = 'Approved'";
-$query_ok = mysqli_query($conn, $sql_ok);
-$row_ok= mysqli_fetch_assoc($query_ok);
-
-$sql_pend = "select count(id) from students where status = 'Pending'";
-$query_pend = mysqli_query($conn, $sql_pend);
-$row_pend= mysqli_fetch_assoc($query_pend);
-
-$sql_update="select * from students where id =".$row['id'];
-$query_update=mysqli_query($conn,$sql_update);
-$row=mysqli_fetch_assoc($query_update);
-
+require "func.php";
+connect();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -131,7 +116,7 @@ $row=mysqli_fetch_assoc($query_update);
                     <div class="ps-3">
                       <h6>
                       <?php
-                      echo $row_ok['count(id)'];
+                      count_approved();
                       ?>
                       </h6>
                     </div>
@@ -154,7 +139,7 @@ $row=mysqli_fetch_assoc($query_update);
                     <div class="ps-3">
                       <h6>
                       <?php
-                      echo $row_pend['count(id)'];
+                      count_pending()
                       ?>
                       </h6>
                     </div>
@@ -187,44 +172,7 @@ $row=mysqli_fetch_assoc($query_update);
                   </thead>
                   <tbody>
                     <?php
-                    while($row = mysqli_fetch_assoc($sqldata)){
-                      echo "<tr><td>";
-                      echo $row['id'];
-                      echo "</td><td>";
-                      echo $row['login_name'];
-                      echo "</td><td>";
-                      echo $row['email'];
-                      echo "</td><td>";
-                      echo $row['father_name'];
-                      echo "</td><td>";
-                      echo $row['mother_name'];
-                      echo "</td><td>";
-                      echo $row['mobile_no'];
-                      echo "</td><td>";
-                      echo $row['kulam'];
-                      echo "</td><td>";
-                      echo $row['kovil'];
-                      echo "</td><td>";
-                      echo $row['pincode'];
-                      echo "</td><td>";
-                      echo $row['status'];
-                      echo "</td><td>";
-                      $id=$row['id'];
-                      $name=$row['login_name'];
-                      $email=$row['email'];
-                      $father=$row['father_name'];
-                      $mother=$row['mother_name'];
-                      $mobile=$row['mobile_no'];
-                      $kovil=$row['kovil'];
-                      $kulam=$row['kulam'];
-                      $pincode=$row['pincode'];
-                      echo '<form method="GET" action="view.php">
-                      <input type="submit" class="btn btn-outline-dark rounded-pill" value="View">
-                      <input name="id" type="hidden" value='.$id.'>
-                      </form>
-                      ';
-                      echo "</td></tr>";
-                    }
+                    display_table();
                       ?>
                   </tbody>
                 </table>

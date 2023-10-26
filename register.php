@@ -3,51 +3,10 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 session_start();
-require 'config.php';
+require 'func.php';
 
-if(isset($_POST['submit'])){
-
-  $name = $_POST['name'];
-  $email = $_POST['email'];
-  $pass = md5($_POST['password']);
-  $cpass = md5($_POST['cpassword']);
-  $father =  $_POST['father_name'];
-  $mother =  $_POST['mother_name'];
-  $mobile =  $_POST['mobile_no'];
-  $kulam = $_POST['kulam'];
-  $kovil = $_POST['kovil'];
-  $pincode = $_POST['pincode'];
-
-   $select = " SELECT * FROM students WHERE email = '$email' && password = '$pass' ";
-
-   $result = mysqli_query($conn, $select);
-
-   if(mysqli_num_rows($result) > 0){
-
-      $error[] = 'user already exist!';
-
-   }else{
-
-      if($pass != $cpass){
-         $error[] = 'password not matched!';
-      }else{
-         $insert = "INSERT INTO students(login_name,email,password,father_name,mother_name,mobile_no,kulam,kovil,pincode,status) 
-         VALUES('$name','$email','$pass','$father','$mother','$mobile','$kulam','$kovil','$pincode','Pending')";
-         $query=mysqli_query($conn, $insert);
-         if($query == true){
-          /*echo '
-          <div class="alert alert-success alert-dismissible fade show" role="alert">
-              Your account has been successfully created!
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-          ';*/
-          header('location:success.php');
-        }else{
-          echo 'failed';
-        }
-      }
-   }
-}
+//Insert values into registeration table
+connect();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -109,13 +68,9 @@ if(isset($_POST['submit'])){
 
                   <!-- Form -->
                   <form class="row g-1 needs-validation" method="POST" action="" novalidate >
-                     <?php
-                     if(isset($error)){
-                          foreach($error as $error){
-                             echo '<span class="error-msg">'.$error.'</span>';
-                        }
-                   }
-                   ?>
+                    <?php
+                    register();
+                    ?>
                     <div class="col-12">
                       <input type="text" name="name" class="form-control" id="yourName" placeholder="Your Name" required>
                       <div class="invalid-feedback">Please, enter your name!</div>
@@ -179,7 +134,7 @@ if(isset($_POST['submit'])){
                     </div>
                     
                     <div class="text-center">
-                      <button class="btn btn-outline-primary rounded-pill w-50" name="submit" type="submit">Create Account</button>
+                      <button class="btn btn-outline-primary rounded-pill w-50" name="register" type="submit">Create Account</button>
                     </div>
                   </form>
 

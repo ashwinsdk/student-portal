@@ -1,29 +1,10 @@
 <?php
-session_start();
-require 'config.php';
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
-if(isset($_POST['submit'])){
-  $name = $_POST['name'];
-  $email = $_POST['email'];
-  $pass = md5($_POST['password']);
-  $sql = " SELECT * FROM students WHERE email = '$email' && password = '$pass' ";
-
-  $result = mysqli_query($conn, $sql);
-
-   if(mysqli_num_rows($result) > 0){
-    
-    $row = mysqli_fetch_array($result);
-    $_SESSION['user_name'] = $row['login_name'];
-    header('location:pending.php');
-  }else{
-    $error[] = 'incorrect email or password!';
-  }
-
-
-};
+session_start();
+require 'func.php';
+connect();
 ?>
 
 <!DOCTYPE html>
@@ -86,12 +67,8 @@ if(isset($_POST['submit'])){
                   <!-- form -->
                   <form class="row g-3 needs-validation" method="POST" action="" novalidate>
                     <?php
-                        if(isset($error)){
-                           foreach($error as $error){
-                              echo '<span class="error-msg">'.$error.'</span>';
-                           }
-                        }
-                      ?>
+                     login();
+                    ?>
 
                     <div class="col-12">
                       <label for="yourEmail" class="form-label">Your Email</label>
@@ -106,7 +83,7 @@ if(isset($_POST['submit'])){
                     </div>
 
                     <div class="col-12">
-                      <button class="btn btn-primary w-100" name="submit" type="submit">Login</button>
+                      <button class="btn btn-primary w-100" name="login" type="submit">Login</button>
                     </div>
                     <div class="col-12">
                       <p class="small mb-0">Don't have account? <a href="register.php">Create an account</a></p>
