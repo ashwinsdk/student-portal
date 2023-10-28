@@ -3,41 +3,18 @@ session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-require "config.php";
-$sqlget = "select * from students";
-$sqldata = mysqli_query($conn, $sqlget);
 
-$id=$_GET["id"];
-
-$sql = " SELECT * FROM students WHERE id = '$id' ";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_array($result);
-$_SESSION['id'] = $row['id'];
-$_SESSION['user_name'] = $row['login_name'];
-$_SESSION['email'] = $row['email'];
-$_SESSION['father'] = $row['father_name'];
-$_SESSION['mother'] = $row['mother_name'];
-$_SESSION['mobile'] = $row['mobile_no'];
-$_SESSION['kovil'] = $row['kovil'];
-$_SESSION['kulam'] = $row['kulam'];
-$_SESSION['pincode'] = $row['pincode'];
-$_SESSION['status'] = $row['status'];
-
+require "func.php";
+//DB-Connection
+connect();
+//View
+view();
 //Delete
-if(isset($_POST["delete"])){
-  $delete_sql = "delete FROM students WHERE id='$id'";
-  $d_run = mysqli_query($conn , $delete_sql);
-  if($d_run){
-    header('location:admin.php');
-    echo'
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-      <i class="bi bi-exclamation-octagon me-1"></i>
-      A simple danger alert with icon—check it out!
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    ';
-  }
-}
+delete();
+//Disapprove
+approve();
+//Approve
+disapprove();
 ?>
 
 <!DOCTYPE html>
@@ -138,42 +115,6 @@ if(isset($_POST["delete"])){
         <!-- Left side columns -->
         <div class="col-mb-10">
           <div class="row">
-            <?php
-            //Disapprove
-            if(isset($_POST["disapprove"])){
-              $sql2 = "UPDATE students SET status='Disapporved' WHERE id='$id'";
-              $run = mysqli_query($conn , $sql2);
-              if($run){
-                if($run){
-                  echo'
-                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <i class="bi bi-exclamation-octagon me-1"></i>
-                   Disapproved!
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                  </div>
-                  ';
-                }
-              }
-            }
-            //Approve
-            if(isset($_POST["approve"])){
-              $sql2 = "UPDATE students SET status='Approved' WHERE id='$id'";
-              $run = mysqli_query($conn , $sql2);
-              if($run){
-                if($run){
-                  echo'
-                  <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <i class="bi bi-check-circle me-1"></i>
-                    Approved!
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                  </div>
-                  ';
-                }
-              }
-            }
-            
-            ?>
-
 
             <div class="card">
               <div class="card-body">

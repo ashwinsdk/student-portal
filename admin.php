@@ -139,7 +139,7 @@ connect();
                     <div class="ps-3">
                       <h6>
                       <?php
-                      count_pending()
+                      count_pending();
                       ?>
                       </h6>
                     </div>

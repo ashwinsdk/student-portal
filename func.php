@@ -12,7 +12,7 @@ function connect(){
 }
 
 //--Registertion Page--
-//Insert values into registeration table
+
 function register(){
    $conn= mysqli_connect("localhost","root","","student-portal");
     if(isset($_POST['register'])){
@@ -61,6 +61,7 @@ function register(){
 
 
 //--Admin Page--
+
 //Count Approved
 function count_approved(){
    $conn= mysqli_connect("localhost","root","","student-portal");
@@ -127,7 +128,7 @@ function display_table(){
 }
 
 //--Login Page--
-//
+
 function login(){
    $conn= mysqli_connect("localhost","root","","student-portal");
 
@@ -159,4 +160,76 @@ function login(){
 
 }
 
+
+//--View Page--
+//Approve
+function approve(){
+   $conn= mysqli_connect("localhost","root","","student-portal");
+   $id=$_GET["id"];
+   if(isset($_POST["approve"])){
+     $sql2 = "UPDATE students SET status='Approved' WHERE id='$id'";
+     $run = mysqli_query($conn , $sql2);
+     if($run){
+       if($run){
+         header("Refresh:0");
+       }
+     }
+   }}
+
+//Disapprove
+function disapprove(){
+   $conn= mysqli_connect("localhost","root","","student-portal");
+   $id=$_GET["id"];
+   if(isset($_POST["disapprove"])){
+     $sql2 = "UPDATE students SET status='Disapporved' WHERE id='$id'";
+     $run = mysqli_query($conn , $sql2);
+     if($run){
+       if($run){
+         header("Refresh:0");
+       }
+     }
+   }
+}
+
+//Delete
+function delete(){
+   $conn= mysqli_connect("localhost","root","","student-portal");
+   $id=$_GET["id"];
+   if(isset($_POST["delete"])){
+     $delete_sql = "delete FROM students WHERE id='$id'";
+     $d_run = mysqli_query($conn , $delete_sql);
+     if($d_run){
+       header('location:admin.php');
+       echo'
+       <div class="alert alert-danger alert-dismissible fade show" role="alert">
+         <i class="bi bi-exclamation-octagon me-1"></i>
+         A simple danger alert with icon—check it out!
+         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+       </div>
+       ';
+     }
+   }
+}
+
+//View
+function view(){
+   $conn= mysqli_connect("localhost","root","","student-portal");
+   $sqlget = "select * from students";
+   $sqldata = mysqli_query($conn, $sqlget);
+   
+   $id=$_GET["id"];
+   $sql = " SELECT * FROM students WHERE id = '$id' ";
+   $result = mysqli_query($conn, $sql);
+   $row = mysqli_fetch_array($result);
+   $_SESSION['id'] = $row['id'];
+   $_SESSION['user_name'] = $row['login_name'];
+   $_SESSION['email'] = $row['email'];
+   $_SESSION['father'] = $row['father_name'];
+   $_SESSION['mother'] = $row['mother_name'];
+   $_SESSION['mobile'] = $row['mobile_no'];
+   $_SESSION['kovil'] = $row['kovil'];
+   $_SESSION['kulam'] = $row['kulam'];
+   $_SESSION['pincode'] = $row['pincode'];
+   $_SESSION['status'] = $row['status'];
+}
 ?>
